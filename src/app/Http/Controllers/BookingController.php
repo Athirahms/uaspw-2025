@@ -7,15 +7,23 @@ use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use App\Helper\EncryptionHelper;
 
+/**
+ * @OA\Info(
+ *     title="My API",
+ *     version="1.0.0",
+ *     description="Dokumentasi API Uji Coba"
+ * )
+ */
+
 class BookingController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/Bookings",
-     *     operationId="getBookings",
-     *     tags={"Bookings"},
-     *     summary="Get all Bookings",
-     *     description="Returns a list of all Bookings.",
+     *     path="/api/bookings",
+     *     operationId="getbookings",
+     *     tags={"bookings"},
+     *     summary="Get all bookings",
+     *     description="Returns a list of all bookings.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Response(
      *         response=200,
@@ -26,7 +34,7 @@ class BookingController extends Controller
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/Booking")
+     *                 @OA\Items(ref="#/components/schemas/booking")
      *             )
      *         )
      *     ),
@@ -54,32 +62,32 @@ class BookingController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/Bookings",
-     *     operationId="storeBooking",
-     *     tags={"Bookings"},
-     *     summary="Create a new Booking",
-     *     description="Stores a new Booking and returns the encrypted response.",
+     *     path="/api/bookings",
+     *     operationId="storebooking",
+     *     tags={"bookings"},
+     *     summary="Create a new booking",
+     *     description="Stores a new booking and returns the encrypted response.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name", "price"},
-     *             @OA\Property(property="name", type="string", example="Booking A"),
+     *             @OA\Property(property="name", type="string", example="booking A"),
      *             @OA\Property(property="price", type="number", format="float", example=199.99)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Booking created",
+     *         description="booking created",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
      *     @OA\Response(
      *         response=500,
-     *         description="Error storing Booking",
+     *         description="Error storing booking",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="Error storing Booking: ...")
+     *             @OA\Property(property="error", type="string", example="Error storing booking: ...")
      *         )
      *     )
      * )
@@ -114,17 +122,17 @@ class BookingController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/Bookings/{id}",
-     *     operationId="getBookingById",
-     *     tags={"Bookings"},
-     *     summary="Get a Booking by ID",
-     *     description="Returns a single Booking",
+     *     path="/api/bookings/{id}",
+     *     operationId="getbookingById",
+     *     tags={"bookings"},
+     *     summary="Get a booking by ID",
+     *     description="Returns a single booking",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="Booking ID",
+     *         description="booking ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\Response(
@@ -134,7 +142,7 @@ class BookingController extends Controller
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Booking not found"),
+     *     @OA\Response(response=404, description="booking not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -158,34 +166,34 @@ class BookingController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/Bookings/{id}",
-     *     operationId="updateBooking",
-     *     tags={"Bookings"},
-     *     summary="Update a Booking",
-     *     description="Updates an existing Booking",
+     *     path="/api/bookings/{id}",
+     *     operationId="updatebooking",
+     *     tags={"bookings"},
+     *     summary="Update a booking",
+     *     description="Updates an existing booking",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="Booking ID",
+     *         description="booking ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", example="Updated Booking"),
+     *             @OA\Property(property="name", type="string", example="Updated booking"),
      *             @OA\Property(property="price", type="number", format="float", example=299.99)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Booking updated successfully",
+     *         description="booking updated successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Booking not found"),
+     *     @OA\Response(response=404, description="booking not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -216,27 +224,27 @@ class BookingController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/Bookings/{id}",
-     *     operationId="deleteBooking",
-     *     tags={"Bookings"},
-     *     summary="Delete a Booking",
-     *     description="Deletes a Booking by ID",
+     *     path="/api/bookings/{id}",
+     *     operationId="deletebooking",
+     *     tags={"bookings"},
+     *     summary="Delete a booking",
+     *     description="Deletes a booking by ID",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="Booking ID",
+     *         description="booking ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Booking deleted successfully",
+     *         description="booking deleted successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Booking not found"),
+     *     @OA\Response(response=404, description="booking not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -262,11 +270,11 @@ class BookingController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/Bookings/decrypt",
-     *     operationId="decryptBookingResponse",
-     *     tags={"Bookings"},
-     *     summary="Decrypt encrypted Booking data",
-     *     description="Decrypts the encrypted Booking response.",
+     *     path="/api/bookings/decrypt",
+     *     operationId="decryptbookingResponse",
+     *     tags={"bookings"},
+     *     summary="Decrypt encrypted booking data",
+     *     description="Decrypts the encrypted booking response.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
@@ -283,7 +291,7 @@ class BookingController extends Controller
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/Booking")
+     *                 @OA\Items(ref="#/components/schemas/booking")
      *             )
      *         )
      *     ),

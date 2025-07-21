@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Restaurant Booking API",
+      "description": "API documentation for managing restaurant bookings and menus.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://uaspw.test",
+        "description": "Local API Server"
+      }
+    ],
+    "paths": {
+      "/api/menus": {
+        "get": {
+          "tags": ["Menus"],
+          "summary": "Get all menus",
+          "responses": {
+            "200": {
+              "description": "List of menus",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/Menu" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["Menus"],
+          "summary": "Create a menu",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menu"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Menu created"
+            }
+          }
+        }
+      },
+      "/api/bookings": {
+        "get": {
+          "tags": ["Bookings"],
+          "summary": "Get all bookings",
+          "responses": {
+            "200": {
+              "description": "List of bookings",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/Booking" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": ["Bookings"],
+          "summary": "Create a booking",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Booking created"
+            }
+          }
+        }
+      },
+      "/api/booking-menus": {
+        "post": {
+          "tags": ["BookingMenu"],
+          "summary": "Link menus to booking",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingMenu"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "BookingMenu created"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Menu": {
+          "type": "object",
+          "required": ["id", "nama", "harga"],
+          "properties": {
+            "id": { "type": "integer", "example": 1 },
+            "nama": { "type": "string", "example": "Nasi Goreng" },
+            "deskripsi": { "type": "string", "example": "Nasi goreng pedas" },
+            "kategori": { "type": "string", "example": "Makanan" },
+            "harga": { "type": "number", "format": "float", "example": 25000.0 },
+            "created_at": { "type": "string", "format": "date-time" },
+            "updated_at": { "type": "string", "format": "date-time" }
+          }
+        },
+        "Booking": {
+          "type": "object",
+          "required": ["id", "nama_pelanggan", "email", "nomor_telepon", "jumlah_tamu", "hari", "waktu"],
+          "properties": {
+            "id": { "type": "integer", "example": 1 },
+            "nama_pelanggan": { "type": "string", "example": "Budi" },
+            "email": { "type": "string", "example": "budi@example.com" },
+            "nomor_telepon": { "type": "string", "example": "+628123456789" },
+            "jumlah_tamu": { "type": "integer", "example": 4 },
+            "hari": { "type": "string", "format": "date", "example": "2024-07-22" },
+            "waktu": { "type": "string", "format": "time", "example": "19:00:00" },
+            "created_at": { "type": "string", "format": "date-time" },
+            "updated_at": { "type": "string", "format": "date-time" }
+          }
+        },
+        "BookingMenu": {
+          "type": "object",
+          "required": ["id", "booking_id", "menu_id", "quantity"],
+          "properties": {
+            "id": { "type": "integer", "example": 1 },
+            "booking_id": { "type": "integer", "example": 1 },
+            "menu_id": { "type": "integer", "example": 1 },
+            "quantity": { "type": "integer", "example": 2 },
+            "created_at": { "type": "string", "format": "date-time" },
+            "updated_at": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    },
+    "tags": [
+      { "name": "Menus", "description": "Manage menus" },
+      { "name": "Bookings", "description": "Manage bookings" },
+      { "name": "BookingMenu", "description": "Manage booked menu items" }
+    ]
+  }
+  

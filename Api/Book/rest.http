@@ -1,0 +1,7 @@
+@baseUrl = https://uaspw.test/api/bookings
+@cType = application/json
+@apikey = djambred
+###
+GET {{baseUrl}}
+Content-Type: {{cType}}
+X-API-KEY:  {{apikey}}

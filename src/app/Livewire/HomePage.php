@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use app\Models\Menu;
+use Pest\Collision\Events;
 
 class HomePage extends Component
 {
@@ -15,8 +16,11 @@ class HomePage extends Component
     }
 
     public function render()
-    {
-        return view('livewire.home-page');
-    }
+{
+    return view('livewire.home-page', [
+        'menus' => Menu::all(),
+    ]);
+}
+
 }
 

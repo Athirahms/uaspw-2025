@@ -1,48 +1,52 @@
-namespace App\Http\Livewire;
+<?php
 
-use Livewire\Component;
+namespace App\Livewire;
+
 use App\Models\Booking;
 use App\Models\Menu;
+use Livewire\Component;
 
 class BookingForm extends Component
 {
-    public $nama_pelanggan, $email, $nomor_telepon;
-    public $jumlah_tamu, $hari, $waktu;
+    public $nama_pelanggan;
+    public $email;
+    public $nomor_telepon;
+    public $jumlah_tamu;
+    public $hari;
+    public $waktu;
     public $menu_id;
+
+    public $menus = [];
     public $success;
 
-    protected $rules = [
-        'nama_pelanggan' => 'required|string|max:100',
-        'email' => 'required|email',
-        'nomor_telepon' => 'required',
-        'jumlah_tamu' => 'required|integer',
-        'hari' => 'required|date',
-        'waktu' => 'required',
-        'menu_id' => 'required|exists:menus,id'
-    ];
+    public function mount()
+    {
+        $this->menus = Menu::all();
+    }
 
     public function submit()
     {
-        $this->validate();
-
-        Booking::create([
-            'nama_pelanggan' => $this->nama_pelanggan,
-            'email' => $this->email,
-            'nomor_telepon' => $this->nomor_telepon,
-            'jumlah_tamu' => $this->jumlah_tamu,
-            'hari' => $this->hari,
-            'waktu' => $this->waktu,
-            'menu_id' => $this->menu_id
+        $validated = $this->validate([
+            'nama_pelanggan' => 'required|string|max:255',
+            'email' => 'required|email',
+            'nomor_telepon' => 'required|string|max:20',
+            'jumlah_tamu' => 'required|integer|min:1',
+            'hari' => 'required|date',
+            'waktu' => 'required',
+            'menu_id' => 'required|exists:menus,id',
         ]);
 
-        $this->reset();
-        $this->success = 'Booking berhasil dikirim!';
+        Booking::create($validated);
+
+        $this->reset([
+            'nama_pelanggan', 'email', 'nomor_telepon', 'jumlah_tamu', 'hari', 'waktu', 'menu_id'
+        ]);
+
+        $this->success = 'Thank you! Your table has been booked.';
     }
 
     public function render()
     {
-        return view('livewire.booking-form', [
-            'menus' => Menu::all()
-        ]);
+        return view('livewire.booking-form');
     }
 }

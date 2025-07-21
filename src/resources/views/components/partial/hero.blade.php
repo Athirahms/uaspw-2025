@@ -1,4 +1,4 @@
-<!-- Hero Section -->
+
     <section id="hero" class="hero section">
       <div class="container-fluid hero-container" data-aos="fade-up">
         <div class="row g-0 align-items-center">
@@ -68,5 +68,3 @@
           </div>
         </div>
       </div>
-
-    </section><!-- /Hero Section -->

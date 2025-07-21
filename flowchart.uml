@@ -1,0 +1,32 @@
+@startuml
+start
+
+:Customer buka halaman booking;
+:Customer isi form booking;
+:Customer submit booking;
+
+if (Data valid?) then (ya)
+    :Simpan booking ke database;
+    :Tampilkan konfirmasi ke customer;
+else (tidak)
+    :Tampilkan pesan error;
+endif
+
+:Admin login ke sistem;
+
+repeat
+    :Admin melihat daftar booking;
+    if (Admin ingin kelola menu?) then (ya)
+        :Admin menambah/edit/hapus menu;
+    endif
+    if (Admin ingin kelola booking?) then (ya)
+        :Admin update status booking;
+        :Admin kelola menu yang dipesan (BookingMenu);
+    endif
+    if (Admin ingin lihat laporan?) then (ya)
+        :Admin generate laporan booking;
+    endif
+repeat while (Admin masih ingin mengelola)
+
+stop
+@enduml

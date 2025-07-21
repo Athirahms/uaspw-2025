@@ -1,0 +1,36 @@
+@startuml
+entity "Menu" as menu {
+    * id : int <<PK>>
+    --
+    nama : string
+    deskripsi : string
+    kategori : enum
+    harga : float
+    created_at : datetime
+    updated_at : datetime
+}
+
+entity "Booking" as booking {
+    * id : int <<PK>>
+    --
+    nama_pelanggan : string
+    email : string
+    nomor_telepon : string
+    jumlah_tamu : int
+    hari : date
+    waktu : time
+    created_at : datetime
+    updated_at : datetime
+}
+
+entity "BookingMenu" as bookingmenu {
+    * id : int <<PK>>
+    --
+    booking_id : int <<FK>>
+    menu_id : int <<FK>>
+    quantity : int
+}
+
+booking ||--o{ bookingmenu : contains
+menu ||--o{ bookingmenu : included in
+@enduml

@@ -6,11 +6,10 @@
     @include('components.partial.about')
     @include('components.partial.menu')
     @include('components.partial.chefs')
-    @include('components.partial.book')
+    @include('components.partial.book')        
     @include('components.partial.events')
     @include('components.partial.location')
     @include('components.partial.contact')
-
 
     <livewire:booking-form />
 

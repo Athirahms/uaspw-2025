@@ -1,4 +1,4 @@
- <!-- Location Section -->
+
     <section id="location" class="location section">
 
       <!-- Section Title -->
@@ -75,5 +75,3 @@
         </div>
 
       </div>
-
-    </section><!-- /Location Section -->

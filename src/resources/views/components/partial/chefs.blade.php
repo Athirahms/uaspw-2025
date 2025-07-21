@@ -1,4 +1,4 @@
-<!-- Chefs Section -->
+
     <section id="chefs" class="chefs section">
 
       <!-- Section Title -->
@@ -110,5 +110,3 @@
         </div>
 
       </div>
-
-    </section><!-- /Chefs Section -->

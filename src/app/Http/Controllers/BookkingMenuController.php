@@ -7,15 +7,23 @@ use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use App\Helper\EncryptionHelper;
 
+/**
+ * @OA\Info(
+ *     title="My API",
+ *     version="1.0.0",
+ *     description="Dokumentasi API Uji Coba"
+ * )
+ */
+
 class BookkingMenuController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/BookkingMenus",
-     *     operationId="getBookkingMenus",
-     *     tags={"BookkingMenus"},
-     *     summary="Get all BookkingMenus",
-     *     description="Returns a list of all BookkingMenus.",
+     *     path="/api/bookking_menus",
+     *     operationId="getbookking_menus",
+     *     tags={"bookking_menus"},
+     *     summary="Get all bookking_menus",
+     *     description="Returns a list of all bookking_menus.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Response(
      *         response=200,
@@ -26,7 +34,7 @@ class BookkingMenuController extends Controller
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/BookkingMenu")
+     *                 @OA\Items(ref="#/components/schemas/bookking_menu")
      *             )
      *         )
      *     ),
@@ -54,32 +62,32 @@ class BookkingMenuController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/BookkingMenus",
-     *     operationId="storeBookkingMenu",
-     *     tags={"BookkingMenus"},
-     *     summary="Create a new BookkingMenu",
-     *     description="Stores a new BookkingMenu and returns the encrypted response.",
+     *     path="/api/bookking_menus",
+     *     operationId="storebookking_menu",
+     *     tags={"bookking_menus"},
+     *     summary="Create a new bookking_menu",
+     *     description="Stores a new bookking_menu and returns the encrypted response.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name", "price"},
-     *             @OA\Property(property="name", type="string", example="BookkingMenu A"),
+     *             @OA\Property(property="name", type="string", example="bookking_menu A"),
      *             @OA\Property(property="price", type="number", format="float", example=199.99)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="BookkingMenu created",
+     *         description="bookking_menu created",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
      *     @OA\Response(
      *         response=500,
-     *         description="Error storing BookkingMenu",
+     *         description="Error storing bookking_menu",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="Error storing BookkingMenu: ...")
+     *             @OA\Property(property="error", type="string", example="Error storing bookking_menu: ...")
      *         )
      *     )
      * )
@@ -114,17 +122,17 @@ class BookkingMenuController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/BookkingMenus/{id}",
-     *     operationId="getBookkingMenuById",
-     *     tags={"BookkingMenus"},
-     *     summary="Get a BookkingMenu by ID",
-     *     description="Returns a single BookkingMenu",
+     *     path="/api/bookking_menus/{id}",
+     *     operationId="getbookking_menuById",
+     *     tags={"bookking_menus"},
+     *     summary="Get a bookking_menu by ID",
+     *     description="Returns a single bookking_menu",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="BookkingMenu ID",
+     *         description="bookking_menu ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\Response(
@@ -134,7 +142,7 @@ class BookkingMenuController extends Controller
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="BookkingMenu not found"),
+     *     @OA\Response(response=404, description="bookking_menu not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -158,34 +166,34 @@ class BookkingMenuController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/BookkingMenus/{id}",
-     *     operationId="updateBookkingMenu",
-     *     tags={"BookkingMenus"},
-     *     summary="Update a BookkingMenu",
-     *     description="Updates an existing BookkingMenu",
+     *     path="/api/bookking_menus/{id}",
+     *     operationId="updatebookking_menu",
+     *     tags={"bookking_menus"},
+     *     summary="Update a bookking_menu",
+     *     description="Updates an existing bookking_menu",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="BookkingMenu ID",
+     *         description="bookking_menu ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", example="Updated BookkingMenu"),
+     *             @OA\Property(property="name", type="string", example="Updated bookking_menu"),
      *             @OA\Property(property="price", type="number", format="float", example=299.99)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="BookkingMenu updated successfully",
+     *         description="bookking_menu updated successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="BookkingMenu not found"),
+     *     @OA\Response(response=404, description="bookking_menu not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -216,27 +224,27 @@ class BookkingMenuController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/BookkingMenus/{id}",
-     *     operationId="deleteBookkingMenu",
-     *     tags={"BookkingMenus"},
-     *     summary="Delete a BookkingMenu",
-     *     description="Deletes a BookkingMenu by ID",
+     *     path="/api/bookking_menus/{id}",
+     *     operationId="deletebookking_menu",
+     *     tags={"bookking_menus"},
+     *     summary="Delete a bookking_menu",
+     *     description="Deletes a bookking_menu by ID",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="BookkingMenu ID",
+     *         description="bookking_menu ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="BookkingMenu deleted successfully",
+     *         description="bookking_menu deleted successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="BookkingMenu not found"),
+     *     @OA\Response(response=404, description="bookking_menu not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -262,11 +270,11 @@ class BookkingMenuController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/BookkingMenus/decrypt",
-     *     operationId="decryptBookkingMenuResponse",
-     *     tags={"BookkingMenus"},
-     *     summary="Decrypt encrypted BookkingMenu data",
-     *     description="Decrypts the encrypted BookkingMenu response.",
+     *     path="/api/bookking_menus/decrypt",
+     *     operationId="decryptbookking_menuResponse",
+     *     tags={"bookking_menus"},
+     *     summary="Decrypt encrypted bookking_menu data",
+     *     description="Decrypts the encrypted bookking_menu response.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
@@ -283,7 +291,7 @@ class BookkingMenuController extends Controller
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/BookkingMenu")
+     *                 @OA\Items(ref="#/components/schemas/bookking_menu")
      *             )
      *         )
      *     ),

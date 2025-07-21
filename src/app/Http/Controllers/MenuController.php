@@ -7,15 +7,23 @@ use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use App\Helper\EncryptionHelper;
 
+/**
+ * @OA\Info(
+ *     title="My API",
+ *     version="1.0.0",
+ *     description="Dokumentasi API Uji Coba"
+ * )
+ */
+
 class MenuController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/Menus",
-     *     operationId="getMenus",
-     *     tags={"Menus"},
-     *     summary="Get all Menus",
-     *     description="Returns a list of all Menus.",
+     *     path="/api/menus",
+     *     operationId="getmenus",
+     *     tags={"menus"},
+     *     summary="Get all menus",
+     *     description="Returns a list of all menus.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Response(
      *         response=200,
@@ -26,7 +34,7 @@ class MenuController extends Controller
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/Menu")
+     *                 @OA\Items(ref="#/components/schemas/menu")
      *             )
      *         )
      *     ),
@@ -57,32 +65,32 @@ class MenuController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/Menus",
-     *     operationId="storeMenu",
-     *     tags={"Menus"},
-     *     summary="Create a new Menu",
-     *     description="Stores a new Menu and returns the encrypted response.",
+     *     path="/api/menus",
+     *     operationId="storemenu",
+     *     tags={"menus"},
+     *     summary="Create a new menu",
+     *     description="Stores a new menu and returns the encrypted response.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name", "price"},
-     *             @OA\Property(property="name", type="string", example="Menu A"),
+     *             @OA\Property(property="name", type="string", example="menu A"),
      *             @OA\Property(property="price", type="number", format="float", example=199.99)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Menu created",
+     *         description="menu created",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
      *     @OA\Response(
      *         response=500,
-     *         description="Error storing Menu",
+     *         description="Error storing menu",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="Error storing Menu: ...")
+     *             @OA\Property(property="error", type="string", example="Error storing menu: ...")
      *         )
      *     )
      * )
@@ -117,17 +125,17 @@ class MenuController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/Menus/{id}",
-     *     operationId="getMenuById",
-     *     tags={"Menus"},
-     *     summary="Get a Menu by ID",
-     *     description="Returns a single Menu",
+     *     path="/api/menus/{id}",
+     *     operationId="getmenuById",
+     *     tags={"menus"},
+     *     summary="Get a menu by ID",
+     *     description="Returns a single menu",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="Menu ID",
+     *         description="menu ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\Response(
@@ -137,7 +145,7 @@ class MenuController extends Controller
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Menu not found"),
+     *     @OA\Response(response=404, description="menu not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -161,34 +169,34 @@ class MenuController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/Menus/{id}",
-     *     operationId="updateMenu",
-     *     tags={"Menus"},
-     *     summary="Update a Menu",
-     *     description="Updates an existing Menu",
+     *     path="/api/menus/{id}",
+     *     operationId="updatemenu",
+     *     tags={"menus"},
+     *     summary="Update a menu",
+     *     description="Updates an existing menu",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="Menu ID",
+     *         description="menu ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", example="Updated Menu"),
+     *             @OA\Property(property="name", type="string", example="Updated menu"),
      *             @OA\Property(property="price", type="number", format="float", example=299.99)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Menu updated successfully",
+     *         description="menu updated successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Menu not found"),
+     *     @OA\Response(response=404, description="menu not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -219,27 +227,27 @@ class MenuController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/Menus/{id}",
-     *     operationId="deleteMenu",
-     *     tags={"Menus"},
-     *     summary="Delete a Menu",
-     *     description="Deletes a Menu by ID",
+     *     path="/api/menus/{id}",
+     *     operationId="deletemenu",
+     *     tags={"menus"},
+     *     summary="Delete a menu",
+     *     description="Deletes a menu by ID",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
-     *         description="Menu ID",
+     *         description="menu ID",
      *         @OA\Schema(type="integer", example=1)
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Menu deleted successfully",
+     *         description="menu deleted successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="data", type="string", example="eyJpdiI6In...")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Menu not found"),
+     *     @OA\Response(response=404, description="menu not found"),
      *     @OA\Response(response=401, description="Unauthorized")
      * )
      */
@@ -265,11 +273,11 @@ class MenuController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/Menus/decrypt",
-     *     operationId="decryptMenuResponse",
-     *     tags={"Menus"},
-     *     summary="Decrypt encrypted Menu data",
-     *     description="Decrypts the encrypted Menu response.",
+     *     path="/api/menus/decrypt",
+     *     operationId="decryptmenuResponse",
+     *     tags={"menus"},
+     *     summary="Decrypt encrypted menu data",
+     *     description="Decrypts the encrypted menu response.",
      *     security={{"ApiKeyAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
@@ -286,7 +294,7 @@ class MenuController extends Controller
      *             @OA\Property(
      *                 property="data",
      *                 type="array",
-     *                 @OA\Items(ref="#/components/schemas/Menu")
+     *                 @OA\Items(ref="#/components/schemas/menu")
      *             )
      *         )
      *     ),

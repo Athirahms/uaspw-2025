@@ -1,0 +1,16 @@
+@startuml
+actor Customer
+actor Admin
+
+rectangle "Restaurant Booking System" {
+  Customer --> (View Home Page)
+  Customer --> (View Menu Page)
+  Customer --> (Submit Booking Form)
+
+  Admin --> (Login)
+  Admin --> (Manage Menu)
+  Admin --> (View Bookings)
+  Admin --> (Approve/Cancel Booking)
+  Admin --> (Use API with Token)
+}
+@enduml

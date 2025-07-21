@@ -1,4 +1,4 @@
-<!-- Menu Section -->
+
     <section id="menu" class="menu section">
 
       <!-- Section Title -->
@@ -95,5 +95,3 @@
         </div>
 
       </div>
-
-    </section><!-- /Menu Section -->
